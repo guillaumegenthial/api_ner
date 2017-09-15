@@ -1,4 +1,0 @@
-scipy
-numpy
-flask
-flask_cors
