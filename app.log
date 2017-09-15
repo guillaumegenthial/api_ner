@@ -1,2 +1,0 @@
-I live in Paris
-{'input': u'I live in Paris ', 'output': 'O O    O  B-LOC '}

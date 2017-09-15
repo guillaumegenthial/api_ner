@@ -58,7 +58,7 @@ class Config():
     # general config
     dir_output = "results/crf/"
     dir_model  = dir_output + "model.weights/"
-    path_log   = dir_output + "log.txt"
+    path_log   = dir_output + "model.log"
 
     # embeddings
     dim_word = 300

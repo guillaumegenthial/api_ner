@@ -33,6 +33,13 @@ def api():
     app.logger.info(input_data)
     output_data = model_api(input_data)
     app.logger.info(output_data)
+
+    try:
+        with open("app.log", "a") as f:
+            f.write(str(output_data))
+    except Exception:
+        pass
+
     response = jsonify(output_data)
     return response
 
