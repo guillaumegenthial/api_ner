@@ -9,6 +9,8 @@ To run locally,
 python app.py
 ```
 
+The model is from another repo (`sequence_tagging`) on my github and is in the `model` folder. The flask app is defined in `app.py` which contains generic logic. The model-specific logic for the API is in the `serve.py` file.
+
 ## Other Resources
 
 - MNIST: https://github.com/sugyan/tensorflow-mnist/blob/master/main.py
