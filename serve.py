@@ -1,3 +1,6 @@
+import string
+
+
 from model.ner_model import NERModel
 from model.config import Config
 from evaluate import align_data
@@ -24,7 +27,8 @@ def get_model_api():
 
         """
         # 2. process input
-        words_raw = input_data.strip().split(" ")
+        s = input_data.translate(None, string.punctuation)
+        words_raw = s.strip().split(" ")
 
         # 3. call model predict function
         preds = model.predict(words_raw)
