@@ -1,6 +1,6 @@
 scipy
 numpy
-tensorflow-cpu
+tensorflow
 flask
 gunicorn
 flask_cors
