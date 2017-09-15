@@ -1,6 +1,8 @@
+import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import logging
+
 
 from serve import get_model_api
 
@@ -10,11 +12,11 @@ app = Flask(__name__)
 CORS(app) # needed for cross-domain requests, allow everything by default
 
 
-# logging
-logHandler = logging.FileHandler('app.log')
-logHandler.setLevel(logging.INFO)
-app.logger.addHandler(logHandler)
-app.logger.setLevel(logging.INFO)
+# logging for heroku
+if os.environ.get('HEROKU') is not None:
+    stream_handler = logging.StreamHandler()
+    app.logger.addHandler(stream_handler)
+    app.logger.setLevel(logging.INFO)
 
 
 # load the model
@@ -33,13 +35,6 @@ def api():
     app.logger.info(input_data)
     output_data = model_api(input_data)
     app.logger.info(output_data)
-
-    try:
-        with open("app.log", "a") as f:
-            f.write(str(output_data))
-    except Exception:
-        pass
-
     response = jsonify(output_data)
     return response
 
