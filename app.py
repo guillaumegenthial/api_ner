@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-
+import logging
 
 from serve import get_model_api
 
@@ -8,6 +8,13 @@ from serve import get_model_api
 # define the app
 app = Flask(__name__)
 CORS(app) # needed for cross-domain requests, allow everything by default
+
+
+# logging
+logHandler = logging.FileHandler('app.log')
+logHandler.setLevel(logging.INFO)
+app.logger.addHandler(logHandler)
+app.logger.setLevel(logging.INFO)
 
 
 # load the model
