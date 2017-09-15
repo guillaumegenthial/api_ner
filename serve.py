@@ -27,7 +27,7 @@ def get_model_api():
 
         """
         # 2. process input
-        s = input_data.translate(None, string.punctuation)
+        s = input_data.translate(string.maketrans("",""), string.punctuation)
         words_raw = s.strip().split(" ")
 
         # 3. call model predict function
