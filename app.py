@@ -1,7 +1,8 @@
 import os
+import sys
+import logging
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import logging
 
 
 from serve import get_model_api
@@ -13,9 +14,8 @@ CORS(app) # needed for cross-domain requests, allow everything by default
 
 
 # logging for heroku
-if os.environ.get('HEROKU') is not None:
-    stream_handler = logging.StreamHandler()
-    app.logger.addHandler(stream_handler)
+if 'DYNO' in os.environ:
+    app.logger.addHandler(logging.StreamHandler(sys.stdout))
     app.logger.setLevel(logging.INFO)
 
 
