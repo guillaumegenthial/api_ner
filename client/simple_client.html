@@ -1,0 +1,39 @@
+<!-- include ajax -->
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<!-- form, button and output -->
+<input type="text" id="input" name="input" placeholder="Enter sentence"/>
+<button id="btn">Call API</button>
+<div id="api_output"> </div>
+
+
+<script type="text/javascript">
+    function api_call(input) {
+        $.ajax({
+            url: "http://0.0.0.0:5000/api",
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(input),
+            success: function( data, textStatus, jQxhr ){
+                $('#api_output').html( data.output );
+                $("#input").val("");
+            },
+            error: function( jqXhr, textStatus, errorThrown ){
+                $('#api_output').html( "There was an error" );
+                console.log( errorThrown );
+            },
+            timeout: 3000
+        });
+    }
+    $( document ).ready(function() {
+        // request when clicking on the button
+        $('#btn').click(function() {
+            // get the input data
+            var input = $("#input").val();
+            api_call(input);
+            input = "";
+        });
+    });
+</script>
